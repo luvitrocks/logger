@@ -16,7 +16,7 @@ If you're not familiar with [npm](https://www.npmjs.org/) check this out:
 
 ### ``logger(format, options)``
 
-Create logger middleware function using the given ``format`` and ``options``. Format argument is a predefined name string ([see below for the names](https://github.com/luvitrocks/luvit-logger#predefined-formats)).
+Create logger middleware function using the given ``format`` string and ``options`` table. Format argument is a predefined name string ([see below for the names](https://github.com/luvitrocks/luvit-logger#predefined-formats)).
 
 ##### Options
 
@@ -30,6 +30,7 @@ For now there are three formats provided
 ###### default
 
 ```
+:date :method :url HTTP/:http-version :status :res[content-length] - :response-time :user-agent
 ```
 
 ###### dev
@@ -41,6 +42,7 @@ For now there are three formats provided
 ###### short
 
 ```
+:date - :method :url HTTP/:http-version :status :res[content-length] - :response-time ms
 ```
 
 ## Example

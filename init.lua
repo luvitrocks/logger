@@ -1,4 +1,5 @@
 local os = require('os')
+local math = require('math')
 
 -- format - format of a string ('default', 'short' or 'dev')
 -- available options:
@@ -10,7 +11,7 @@ function logger (format, options)
 
 	format = format or 'default'
 	local stream = options.stream or process.stdout
-	local immediate = options or false
+	local immediate = options.immediate or false
 
 	return function (req, res, follow)
 		local startTime = os.clock()
@@ -28,11 +29,11 @@ function logger (format, options)
 			res:removeListener('end', logRequest)
 
 			if format == 'dev' then
-				output = req.method .. ' ' .. res.code .. ' ' .. req.url .. ' ' .. duration(os.clock() - startTime) .. 'ms'
+				output = req.method .. ' ' .. res.code .. ' ' .. req.url .. ' ' .. duration(os.clock() - startTime) .. 'ms ' .. (res.headers['Content-Length'] or '0')
 			elseif format == 'short' then
-				output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.code .. ' ' .. duration(os.clock() - startTime) .. 'ms'
+				output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.code .. ' ' .. (res.headers['Content-Length'] and ' - ' or '') .. duration(os.clock() - startTime) .. 'ms'
 			else
-				output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.code .. ' ' .. duration(os.clock() - startTime) .. 'ms ' .. req.headers['user-agent']
+				output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.code .. ' ' .. (res.headers['Content-Length'] and ' - ' or '') .. duration(os.clock() - startTime) .. 'ms ' .. req.headers['user-agent']
 			end
 
 			stream:write(output .. '\n')
