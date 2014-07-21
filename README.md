@@ -18,28 +18,28 @@ If you're not familiar with [npm](https://www.npmjs.org/) check this out:
 
 Create logger middleware function using the given ``format`` string and ``options`` table. Format argument is a predefined name string ([see below for the names](https://github.com/luvitrocks/luvit-logger#predefined-formats)).
 
-##### Options
+### Options
 
 - ``stream`` - output stream for writing log lines, defaults to ``process.stdout``.
 - ``immediate`` - write log line on request instead of response, it means that a requests will be logged even if the server crashes, but data from the response cannot be logged (like the response code), defaults to ``false``.
 
-##### Predefined formats
+### Predefined formats
 
 For now there are three formats provided
 
-###### default
+##### default
 
 ```
-:date :method :url HTTP/:http-version :status :res[content-length] - :response-time :user-agent
+:date :method :url HTTP/:http-version :status :res[content-length] - :response-time ms :user-agent
 ```
 
-###### dev
+##### dev
 
 ```
 :method :url :status :response-time ms - :res[content-length]
 ```
 
-###### short
+##### short
 
 ```
 :date - :method :url HTTP/:http-version :status :res[content-length] - :response-time ms
