@@ -8,7 +8,7 @@ return {
 	},
 	author = {
 		name = "Dmitri Voronianski",
-		email = "voronianski@gmail.com"
+		email = "dmitri.voronianski@gmail.com"
 	},
 	licenses = {"MIT"},
 	main = 'init.lua'
