@@ -1,3 +1,4 @@
 .DS_Store
 *.log
+deps
 node_modules
