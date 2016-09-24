@@ -44,8 +44,8 @@ For now there are three formats provided
 ## Example
 
 ```lua
-local utopia = require('luvit-utopia')
-local logger = require('luvit-logger')
+local utopia = require('utopia')
+local logger = require('logger')
 
 local app = utopia:new()
 
