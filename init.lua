@@ -20,7 +20,7 @@ function logger (format, options)
 
     local function logRequest ()
       local output
-      local httpVersion = req.version_major .. '.' .. req.version_minor
+      local httpVersion = req.httpVersion
       local function duration (seconds)
         local shift = 10 ^ 2
         local result = math.floor(seconds * 1000 * shift + 0.5) / shift
@@ -30,11 +30,11 @@ function logger (format, options)
       res:removeListener('end', logRequest)
 
       if format == 'dev' then
-        output = req.method .. ' ' .. res.code .. ' ' .. req.url .. ' ' .. duration(os.clock() - startTime) .. 'ms ' .. (res.headers['Content-Length'] or '0')
+        output = req.method .. ' ' .. res.statusCode .. ' ' .. req.url .. ' ' .. duration(os.clock() - startTime) .. 'ms ' .. (res.headers['Content-Length'] or '0')
       elseif format == 'short' then
-        output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.code .. ' ' .. (res.headers['Content-Length'] and ' - ' or '') .. duration(os.clock() - startTime) .. 'ms'
+        output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.statusCode .. ' ' .. (res.headers['Content-Length'] and ' - ' or '') .. duration(os.clock() - startTime) .. 'ms'
       else
-        output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.code .. ' ' .. (res.headers['Content-Length'] and ' - ' or '') .. duration(os.clock() - startTime) .. 'ms ' .. req.headers['user-agent']
+        output = dateTime .. ' - ' .. req.method .. ' ' .. req.url .. ' HTTP/' .. httpVersion .. ' ' .. res.statusCode .. ' ' .. (res.headers['Content-Length'] and ' - ' or '') .. duration(os.clock() - startTime) .. 'ms ' .. req.headers['user-agent']
       end
 
       stream:write(output .. '\n')
@@ -43,7 +43,7 @@ function logger (format, options)
     if immediate then
       logRequest()
     else
-      res:on('end', logRequest)
+      res:on('finish', logRequest)
     end
 
     nxt()

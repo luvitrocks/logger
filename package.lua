@@ -1,6 +1,6 @@
 return {
   name = 'voronianski/logger',
-  version = '1.0.0',
+  version = '1.0.1',
   description = 'HTTP request logger middleware for luvit.io',
   repository = {
     url = 'http://github.com/luvitrocks/luvit-logger.git',
