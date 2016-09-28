@@ -3,14 +3,14 @@ return {
   version = '1.0.1',
   description = 'HTTP request logger middleware for luvit.io',
   repository = {
-    url = 'http://github.com/luvitrocks/luvit-logger.git',
+    url = 'http://github.com/luvitrocks/logger.git',
   },
   tags = {'utopia', 'express', 'connect', 'middleware', 'server', 'log', 'logger'},
   author = {
     name = 'Dmitri Voronianski',
     email = 'dmitri.voronianski@gmail.com'
   },
-  homepage = 'https://github.com/luvitrocks/luvit-logger',
+  homepage = 'https://github.com/luvitrocks/logger',
   licenses = {'MIT'},
   dependencies = {},
   files = {
