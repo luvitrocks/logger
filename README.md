@@ -1,4 +1,4 @@
-# luvit-logger
+# Logger
 
 > HTTP request logger middleware for [luvit.io](http://luvit.io) and [Utopia](https://github.com/luvitrocks/luvit-utopia) server framework.
 
@@ -44,10 +44,10 @@ For now there are three formats provided
 ## Example
 
 ```lua
-local utopia = require('utopia')
+local Utopia = require('utopia')
 local logger = require('logger')
 
-local app = utopia:new()
+local app = Utopia:new()
 
 app:use(logger('dev'))
 
